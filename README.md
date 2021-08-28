@@ -1,3 +1,4 @@
 # NOTE APP
 ## UI
-![Screenshot (52)](https://user-images.githubusercontent.com/69195262/130948735-852d466f-12c2-44c6-ba61-5bb1bf4b3b69.png)
+![Screenshot (53)](https://user-images.githubusercontent.com/69195262/131213574-c0bf2a52-a175-492e-8c29-089caee41c70.png)
+
