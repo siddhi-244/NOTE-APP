@@ -46,7 +46,7 @@ function show(){
                 <h5 class="card-title">Note ${index+1}</h5>
                 <p class="card-text">${element}</p>
                 <button id="${index}" onclick="deleteEle(this.id)" class="btn btn-primary del" data-toggle="tooltip" title="Delete Note Permanently">Delete</button>
-                <button onclick="markimp(this)" class="btn btn-primary">Mark Important</button>
+                <button onclick="markimp(this)" class="btn imp btn-primary">Mark Important</button>
             </div>
         </div>`;
 	});
@@ -56,7 +56,7 @@ function show(){
 		notesElm.innerHTML = html;
 	}
 	else{
-		notesElm.innerHTML = `No Notes Yet ! `;
+		notesElm.innerHTML = `<h4 style="color:grey;">No Notes Yet !</h4>`;
 	}
 }
 
@@ -90,5 +90,6 @@ search.addEventListener("input",function(){
 });
 
 function markimp(card){
-	card.parentElement.style.background = "#ff88cb";
+	card.parentElement.style.background = "#ffeecb";
+	card.parentElement.style.borderRadius="40px";
 }

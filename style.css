@@ -1,0 +1,19 @@
+.del:hover {
+	background-color: red;
+}
+.imp:hover{
+	background-color: green;
+}
+/*.noteCard:hover{
+	background-color: #99aabb;
+}
+  */     
+
+.noteCard{
+	border-radius: 40px;
+	background-color: whitesmoke;
+	color: grey;
+	font-weight: 560;
+	border:2px solid black;
+}
+            
