@@ -2,65 +2,71 @@ show();
 
 let clearbtn = document.getElementById("clearBtn");
 clearbtn.addEventListener("click", function(e){
-	let txt=document.getElementById("addTxt");
+	let txt = document.getElementById("addTxt");
 	txt.value = "";
 })
 
 let addbtn = document.getElementById("addBtn");
 addbtn.addEventListener("click", function(e){
-	let txt=document.getElementById("addTxt");
-	let notes=localStorage.getItem("notes");
-	if(notes==null){
-		notesObj=[];
+	let txt = document.getElementById("addTxt");
+	if (txt.value == "") {
+		alert("OOPs!! Note is Empty");
 	}
-	else{
-		notesObj=JSON.parse(notes);
-	}
+	else {
+		let notes = localStorage.getItem("notes");
+		if(notes == null){
+			notesObj = [];
+		}
+		else{
+			notesObj = JSON.parse(notes);
+		}
 
-	notesObj.push(txt.value);
-	localStorage.setItem("notes",JSON.stringify(notesObj));
-	txt.value="";
-	show();         
+		notesObj.push(txt.value);
+		localStorage.setItem("notes",JSON.stringify(notesObj));
+		txt.value = "";
+
+		show();
+	}         
 });
 
 function show(){
-	let notes=localStorage.getItem("notes");
-	if(notes==null){
-		notesObj=[];
+	let notes = localStorage.getItem("notes");
+	if(notes == null){
+		notesObj = [];
 	}
 	else{
-		notesObj=JSON.parse(notes);
+		notesObj = JSON.parse(notes);
 	}
 
-	let html ="";
+	let html = "";
 	notesObj.forEach(function(element,index){
 		html += `
-		<div class="noteCard my-2 mx-2 card style="width:18rem;">
+		<div class="noteCard my-2 mx-2 card" style="width:18rem;">
             <div class="card-body">
                 <h5 class="card-title">Note ${index+1}</h5>
                 <p class="card-text">${element}</p>
-                <button id="${index}" onclick="deleteEle(this.id)" class="btn btn-primary">Delete</button>
+                <button id="${index}" onclick="deleteEle(this.id)" class="btn btn-primary del" data-toggle="tooltip" title="Delete Note Permanently">Delete</button>
                 <button onclick="markimp(this)" class="btn btn-primary">Mark Important</button>
             </div>
         </div>`;
 	});
 
-	let notesElm=document.getElementById("notes");
-	if(notesObj.length !=0){
-		notesElm.innerHTML=html;
+	let notesElm = document.getElementById("notes");
+	if(notesObj.length != 0){
+		notesElm.innerHTML = html;
 	}
 	else{
-		notesElm.innerHTML=`No Notes Yet ! `;
+		notesElm.innerHTML = `No Notes Yet ! `;
 	}
 }
 
 function deleteEle(index){
-	let notes=localStorage.getItem("notes");
-	if(notes==null){
-		notesObj=[];
+	let notes = localStorage.getItem("notes");
+	if(notes == null){
+		notesObj = [];
 	}
 	else{
-		notesObj=JSON.parse(notes);
+		notesObj = JSON.parse(notes);
 	}
 
 	notesObj.splice(index,1);
@@ -70,19 +76,19 @@ function deleteEle(index){
 
 let search = document.getElementById("searchTxt");
 search.addEventListener("input",function(){
-	let val=search.value.toLowerCase();
-	let note=document.getElementsByClassName("noteCard");
+	let val = search.value.toLowerCase();
+	let note = document.getElementsByClassName("noteCard");
 	Array.from(note).forEach(function(element){
-		let cardTxt=element.getElementsByTagName("p")[0].innerHTML;
+		let cardTxt = element.getElementsByTagName("p")[0].innerHTML;
 		if(cardTxt.includes(val)){
-			element.style.display="block"
+			element.style.display = "block"
 		}
 		else{
-			element.style.display="none"
+			element.style.display = "none"
 		}        
 	});
 });
 
 function markimp(card){
-	card.parentElement.style.background="#ff88cb";
+	card.parentElement.style.background = "#ff88cb";
 }
